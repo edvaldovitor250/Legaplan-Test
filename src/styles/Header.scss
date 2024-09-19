@@ -1,11 +1,19 @@
-.header {
+.header-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
     padding: 20px;
-    background-color: #f8f9fa;
+    position: relative; 
   
     .logo {
+      position: absolute; 
+      left: 20px;
+  
       img {
         width: 150px;
       }
@@ -20,11 +28,21 @@
     }
   
     .date {
+      position: absolute; 
+      right: 20px;
+  
       p {
         font-size: 1rem;
         color: #555;
         margin: 0;
       }
     }
+  }
+  
+  .line {
+    width: calc(100% - 130px);
+    height: 1px;
+    background-color: #a89999;
+    margin: 10px 0 0 50px;
   }
   
