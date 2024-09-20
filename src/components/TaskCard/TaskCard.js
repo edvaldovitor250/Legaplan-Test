@@ -1,7 +1,7 @@
 import "../../styles/TaskCard.scss";
 import { Button as R } from '../shared/Button';
 import useTaskData from '../../hooks/useTaskData';
-import SVGIconDelete from "../shared/SVG/SVGIconDelete";
+import SVGIconDelete from "../../assets/SVG/SVGIconDelete";
 
 const TaskCard = () => {
   const {
