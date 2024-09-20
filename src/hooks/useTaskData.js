@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 
 const useTaskData = () => {
-  const [tasks, setTasks] = useState([
-    { id: 1, text: 'Lavar as mãos', completed: false },
-    { id: 2, text: 'Fazer um bolo', completed: false },
-    { id: 3, text: 'Lavar a louça', completed: false },
-    { id: 4, text: 'Levar o lixo para fora', completed: true },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks');
+    return savedTasks ? JSON.parse(savedTasks) : [
+      { id: 1, text: 'Lavar as mãos', completed: false },
+      { id: 2, text: 'Fazer um bolo', completed: false },
+      { id: 3, text: 'Lavar a louça', completed: false },
+      { id: 4, text: 'Levar o lixo para fora', completed: true },
+    ];
+  });
 
   const [completedTasksMessage, setCompletedTasksMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,6 +20,10 @@ const useTaskData = () => {
   useEffect(() => {
     const hasCompletedTasks = tasks.some(task => task.completed);
     setCompletedTasksMessage(hasCompletedTasks ? 'Tarefas finalizadas' : '');
+  }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
   const toggleComplete = (taskId) => {

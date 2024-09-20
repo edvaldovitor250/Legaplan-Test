@@ -22,3 +22,11 @@
     }
   }
   
+
+  @media (max-width: 768px) {
+    .add-task-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem; 
+        height: 45px;
+    }
+}

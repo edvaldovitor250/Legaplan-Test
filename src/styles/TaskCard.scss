@@ -227,3 +227,34 @@ label {
         }
     }
 }
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px;
+        
+        .logo {
+            left: 10px;
+        }
+
+        .welcome {
+            h1 {
+                font-size: 1.2rem;
+                text-align: center; 
+            }
+        }
+
+        .date {
+            right: 10px;
+
+            p {
+                font-size: 0.9rem; 
+            }
+        }
+    }
+
+    .line {
+        width: calc(100% - 30px); 
+        margin-left: 15px;
+    }
+}
