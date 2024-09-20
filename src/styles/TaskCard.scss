@@ -70,10 +70,6 @@
         }
     }
 
-    .button-container {
-        margin-top: 20px;
-    }
-
     .add-task-btn {
         background-color: #007bff;
         color: white;
@@ -121,7 +117,7 @@
     
     p {
         margin: 0; 
-        color: #000000; 
+        color: #000; 
         text-align: left; 
         margin-top: 10px; 
         margin-bottom: 0; 
@@ -131,7 +127,7 @@
     .button-container {
         display: flex; 
         justify-content: space-between;
-        border-radius: 9px;  
+        border-radius: 9px;
     }
     
     .modal-btn {
@@ -163,6 +159,71 @@
             &:hover {
                 background-color: #ff3c3c; 
             }
+        }
+    }
+}
+
+.task-button {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: -22px;
+}
+
+.modal-btn {
+    width: 185px; 
+    height: 81px; 
+    padding: 16px 24px; 
+    border-radius: 8px; 
+    opacity: 1; 
+    border: none; 
+    font-family: 'Inter Tight', sans-serif; 
+    font-size: 14px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    margin-top: -40px;
+}
+
+.cancel-btn {
+    background-color: #f0f0f0; 
+    color: #333;
+
+    &:hover {
+        background-color: #e0e0e0; 
+    }
+}
+
+.add-btn {
+    background-color: #007bff; 
+    color: white;
+
+    &:hover {
+        background-color: #0056b3; 
+    }
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+
+    input {
+        margin-top: 5px;
+        padding: 10px;
+        border: 1px solid #ccc; 
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+
+        &:focus {
+            border-color: #4CAF50; 
+            outline: none; 
+        }
+
+        &:invalid {
+            border-color: #f44336; 
         }
     }
 }

@@ -7,18 +7,16 @@ const useTaskData = () => {
     { id: 3, text: 'Lavar a louça', completed: false },
     { id: 4, text: 'Levar o lixo para fora', completed: true },
   ]);
-  
+
   const [completedTasksMessage, setCompletedTasksMessage] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
+  const [newTaskText, setNewTaskText] = useState('');
   const [taskToDelete, setTaskToDelete] = useState(null);
 
   useEffect(() => {
     const hasCompletedTasks = tasks.some(task => task.completed);
-    if (hasCompletedTasks) {
-      setCompletedTasksMessage('Tarefas finalizadas');
-    } else {
-      setCompletedTasksMessage('');
-    }
+    setCompletedTasksMessage(hasCompletedTasks ? 'Tarefas finalizadas' : '');
   }, [tasks]);
 
   const toggleComplete = (taskId) => {
@@ -27,9 +25,11 @@ const useTaskData = () => {
     ));
   };
 
-  const addTask = () => {
-    const newTask = { id: tasks.length + 1, text: 'Nova tarefa', completed: false };
+  const addTask = (text) => {
+    const newTask = { id: tasks.length + 1, text, completed: false };
     setTasks([...tasks, newTask]);
+    setNewTaskText('');
+    setIsAddTaskModalOpen(false);
   };
 
   const deleteTask = (taskId) => {
@@ -52,15 +52,19 @@ const useTaskData = () => {
     setTaskToDelete(null);
   };
 
-  return { 
-    tasks, 
-    completedTasksMessage, 
-    isModalOpen, 
-    handleDeleteClick, 
-    confirmDelete, 
-    cancelDelete, 
-    toggleComplete, 
-    addTask 
+  return {
+    tasks,
+    completedTasksMessage,
+    isModalOpen,
+    isAddTaskModalOpen,
+    newTaskText,
+    handleDeleteClick,
+    confirmDelete,
+    cancelDelete,
+    toggleComplete,
+    addTask,
+    setIsAddTaskModalOpen,
+    setNewTaskText,
   };
 };
 
