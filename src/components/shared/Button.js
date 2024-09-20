@@ -1,6 +1,6 @@
 import '../../styles/Button.scss';
 
-const Button = ({ children, onClick }) => {
+export const Button = ({ children, onClick }) => {
   return (
     <button className="add-task-btn" onClick={onClick}>
       {children}
@@ -8,4 +8,4 @@ const Button = ({ children, onClick }) => {
   );
 };
 
-export default Button;
+
