@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         marginBottom: 10,
-        marginLeft: 10,
+        marginLeft: -40,
         marginTop: 20,
       },
       welcomeText: {

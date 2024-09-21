@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, TextInput, Modal, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import SVGIconDelete from '../assets/SVG/SVGIconDelete';
 import useTaskData from './../hooks/useTaskData';
+import AddTaskModal from './AddTaskModal'; // Importe o AddTaskModal
 
 const TaskCard = () => {
   const {
@@ -18,12 +19,6 @@ const TaskCard = () => {
   const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
   const [completedTasksMessageVisible, setCompletedTasksMessageVisible] = useState(false);
 
-  const handleAddTask = () => {
-    addTask(newTaskText);
-    setNewTaskText('');
-    setIsAddTaskModalOpen(false);
-  };
-
   const confirmDelete = () => {
     if (taskToDelete !== null) {
       handleDeleteClick(taskToDelete);
@@ -31,7 +26,7 @@ const TaskCard = () => {
     }
     setIsDeleteTaskModalOpen(false);
   };
-  
+
   const handleComplete = (taskId: number) => {
     toggleComplete(taskId);
     const task = tasks.find(t => t.id === taskId);
@@ -76,33 +71,17 @@ const TaskCard = () => {
       </TouchableOpacity>
 
       {/* Modal para adicionar tarefa */}
-      <Modal
-        animationType="slide"
-        transparent={true}
+      <AddTaskModal
         visible={isAddTaskModalOpen}
-        onRequestClose={() => setIsAddTaskModalOpen(false)}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Adicionar nova tarefa</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Título"
-              value={newTaskText}
-              onChangeText={setNewTaskText}
-              accessibilityLabel="Título da nova tarefa"
-            />
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity onPress={() => setIsAddTaskModalOpen(false)} style={styles.cancelButton}>
-                <Text style={styles.buttonText}>Cancelar</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={handleAddTask} style={styles.addButton}>
-                <Text style={styles.buttonText}>Adicionar</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+        onClose={() => setIsAddTaskModalOpen(false)}
+        onAddTask={() => {
+          addTask(newTaskText); // Adiciona a tarefa
+          setNewTaskText(''); // Limpa o texto
+          setIsAddTaskModalOpen(false); // Fecha o modal
+        }}
+        newTaskText={newTaskText}
+        setNewTaskText={setNewTaskText}
+      />
 
       {/* Modal para deletar tarefa */}
       <Modal
@@ -234,16 +213,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column', // Mudado para coluna
     justifyContent: 'space-between',
     width: '100%',
   },
   cancelButton: {
     backgroundColor: '#f0f0f0',
-    padding: 10,
+    padding: 5,
     borderRadius: 5,
-    flex: 1,
-    marginRight: 5,
+    marginBottom: 10, // Adicionado espaçamento entre os botões
   },
   buttonText: {
     textAlign: 'center',
