@@ -1,5 +1,6 @@
-import HeaderPage from "@/components/HeaderPage"; // Certifique-se de que o caminho está correto
+import HeaderPage from "@/components/HeaderPage"; 
 import { StyleSheet, Text, View } from "react-native";
+import SVGIconTextLogo from './../assets/SVG/SVGIconTextLogo';
 
 export default function Page() {
   return (
@@ -7,6 +8,9 @@ export default function Page() {
       <View style={styles.main}>
         <Text style={styles.title}>Olá Test</Text>
         <Text style={styles.subtitle}>Primeiro test</Text>
+        
+        <SVGIconTextLogo />
+
         <HeaderPage /> 
       </View>
     </View>
