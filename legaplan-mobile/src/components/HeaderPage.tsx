@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import SVGIconLogo from '@/assets/SVG/SVGIconLogo'; 
-import SVGIconTextLogo from '@/assets/SVG/SVGIconTextLogo'; 
+import SVGIconTextLogo from '@/src/assets/SVG/SVGIconTextLogo';
+import SVGIconLogo from '../assets/SVG/SVGIconLogo';
 
 const HeaderPage = () => {
     return (
